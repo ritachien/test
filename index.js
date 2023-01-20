@@ -8,8 +8,9 @@ dayjs.extend(timezone)
 const app = express()
 
 const now = dayjs()
-const time1 = dayjs().tz('Asia/Taipei')
-const time2 = dayjs.tz(now, 'Asia/Taipei')
+const time1 = dayjs().valueOf().tz('Asia/Taipei')
+const time2 = dayjs.tz(now.valueOf(), 'Asia/Taipei')
+const taipeiTime = dayjs().add(8, 'hours').format('YYYY-MM-DD HH:mm:ss')
 
 app.get('/', (req, res) => {
   res.send({
@@ -21,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 
-console.log(`${now}(now)\n${time1}(time1)\n${time2}(time2)\n`)
+console.log(`${now}(now)\n${time1}(time1)\n${time2}(time2)\n${taipeiTime}(taipeiTime)`)
 
 app.listen(3000, () => {
   console.log('app is running on port 3000')

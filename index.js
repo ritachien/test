@@ -6,14 +6,23 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const app = express()
-const year = dayjs().tz('Asia/Taipei').year()
+
+const now = dayjs()
+const time1 = dayjs().tz('Asia/Taipei')
+const time2 = dayjs.tz(now, 'Asia/Taipei')
 
 app.get('/', (req, res) => {
-  res.json({
+  res.send({
     status: 'OK',
-    year
+    now,
+    time1,
+    time2
   })
 })
 
 
-console.log(year)
+console.log(`${now}(now)\n${time1}(time1)\n${time2}(time2)\n`)
+
+app.listen(3000, () => {
+  console.log('app is running on port 3000')
+})
